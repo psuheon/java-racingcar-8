@@ -21,4 +21,8 @@ public class RacingCar {
     public int getNumber() {
         return this.numberOfAdvances;
     }
+
+    public String getName() {
+        return this.name;
+    }
 }

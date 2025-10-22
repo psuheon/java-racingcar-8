@@ -28,20 +28,25 @@ public class CarRacing {
         return this.numberOfAttempts;
     }
 
+    public List<RacingCar> getCarList() {
+        return this.carList;
+    }
+
     public void startRacing() {
         for(RacingCar rc : carList) {
             rc.moveCar();
         }
     }
 
-    public List<RacingCar> judgeWinner() {
+    public List<String> judgeWinner() {
         OptionalInt maxAdvanceOpt = carList.stream()
                                            .mapToInt(RacingCar::getNumber)
                                            .max();
 
         int maxAdvance = maxAdvanceOpt.getAsInt();
-        List<RacingCar> winner = carList.stream()
+        List<String> winner = carList.stream()
                                         .filter(carList->carList.getNumber() == maxAdvance)
+                                        .map(RacingCar::getName)
                                         .collect(Collectors.toList());
 
         return winner;

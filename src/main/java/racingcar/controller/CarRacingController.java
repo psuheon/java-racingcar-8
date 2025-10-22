@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.model.CarRacing;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,8 +15,15 @@ public class CarRacingController {
         carRacing.createCarList(nameList);
         carRacing.setNumberOfAttempts(Integer.parseInt(InputView.getNumber()));
 
+        System.out.println("실행 결과");
         for(int i = 0; i < carRacing.getNumber(); i++) {
             carRacing.startRacing();
+
+            if(i != 0) {
+                System.out.println();
+            }
+            OutputView.printRacingStatus(carRacing.getCarList());
         }
+        OutputView.printWinner(carRacing.judgeWinner());
     }
 }
