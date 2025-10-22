@@ -17,4 +17,8 @@ public class RacingCar {
             this.numberOfAdvances += 1;
         }
     }
+
+    public int getNumber() {
+        return this.numberOfAdvances;
+    }
 }

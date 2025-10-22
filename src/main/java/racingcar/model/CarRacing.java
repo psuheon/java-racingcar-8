@@ -2,6 +2,8 @@ package racingcar.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalInt;
+import java.util.stream.Collectors;
 
 public class CarRacing {
     List<RacingCar> carList = new ArrayList<>();
@@ -23,12 +25,25 @@ public class CarRacing {
     }
 
     public int getNumber(){
-        return numberOfAttempts;
+        return this.numberOfAttempts;
     }
 
     public void startRacing() {
         for(RacingCar rc : carList) {
             rc.moveCar();
         }
+    }
+
+    public List<RacingCar> judgeWinner() {
+        OptionalInt maxAdvanceOpt = carList.stream()
+                                           .mapToInt(RacingCar::getNumber)
+                                           .max();
+
+        int maxAdvance = maxAdvanceOpt.getAsInt();
+        List<RacingCar> winner = carList.stream()
+                                        .filter(carList->carList.getNumber() == maxAdvance)
+                                        .collect(Collectors.toList());
+
+        return winner;
     }
 }
